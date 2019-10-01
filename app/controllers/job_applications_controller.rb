@@ -6,6 +6,11 @@ class JobApplicationsController < ApplicationController
     render json: @job_apps
   end
 
+  def create
+    @job_app = JobApplication.create(company: params[:company], cover_letter: params[:cover], user_id: params[:user_id])
+    render json: @job_app
+  end
+
   def show
   end
 
