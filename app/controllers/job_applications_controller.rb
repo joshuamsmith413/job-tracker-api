@@ -14,7 +14,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def create
-    @job_app = JobApplication.create(company: params[:company], cover_letter: params[:cover], user_id: params[:user_id])
+    @job_app = JobApplication.create(company: params[:company], cover_letter: params[:cover], user_id: params[:user_id], contact: params[:contact], position: params[:position], source: params[:source], resume: params[:resume])
     render json: @job_app
   end
 
