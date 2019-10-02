@@ -6,6 +6,13 @@ class JobApplicationsController < ApplicationController
     render json: @job_apps
   end
 
+  def user_apps
+    apps = JobApplication.all.filter { |app|
+      app.user_id == params[:id]
+    }
+    render json: apps
+  end
+
   def create
     @job_app = JobApplication.create(company: params[:company], cover_letter: params[:cover], user_id: params[:user_id])
     render json: @job_app
@@ -15,10 +22,6 @@ class JobApplicationsController < ApplicationController
   end
 
   private
-
-  def job_application_params
-    params.require(:job_application).permit(:company, :cover_letter)
-  end
 
   def find_job_app
     @job_app = JobApplication.find(params[:id])
