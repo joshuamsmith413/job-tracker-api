@@ -10,6 +10,18 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def set_user
+
+    token = request.headers['authorization']
+    decode = JWT.decode(token, 'secret', true, {algorithm: "HS256"}).first
+    @user = User.find_by(id: decode['id'])
+    if @user
+      render json: @user
+    else
+      render json: {error: 'Pleas login in manually'}, status: 401
+    end
+  end
+
   def create
    @user = User.create(name: params[:name], password: params[:password])
 
@@ -19,6 +31,7 @@ class UsersController < ApplicationController
      render json: { error: 'failed to create user' }, status: :not_acceptable
    end
  end
+
 
   private
 

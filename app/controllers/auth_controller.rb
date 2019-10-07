@@ -9,7 +9,7 @@ class AuthController < ApplicationController
       token = issue_token(id: @user.id)
       render json: {id: @user.id, name: @user.name, token: token}
     else
-      render json: {error: "Could not authenticate"}, status: 401
+      render json: {error: "Please try again"}, status: 401
     end
   end
 end

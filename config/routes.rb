@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :job_applications
   post '/job_applications/get_apps', to: 'job_applications#user_apps'
   post '/auth/login', to: 'auth#create'
+  get '/set_user', to: 'users#set_user'
 end
