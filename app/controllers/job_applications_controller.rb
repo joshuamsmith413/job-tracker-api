@@ -7,14 +7,11 @@ class JobApplicationsController < ApplicationController
   end
 
   def user_apps
-    apps = JobApplication.all.filter { |app|
-      app.user_id == params[:id]
-    }
+    apps = User.find_by(id: params[:id]).job_applications
     render json: apps
   end
 
   def create
-    byebug
     @job_app = JobApplication.create(company: params[:company], cover_letter: params[:cover], user_id: params[:userId], contact: params[:contact], position: params[:position], source: params[:source], resume: params[:resume])
     render json: @job_app
   end
