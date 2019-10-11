@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_230648) do
+ActiveRecord::Schema.define(version: 2019_10_11_185448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_10_02_230648) do
     t.string "position"
     t.string "source"
     t.string "resume"
+    t.boolean "current", default: true
+    t.boolean "interview", default: false
   end
 
   create_table "users", force: :cascade do |t|
