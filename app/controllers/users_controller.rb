@@ -35,6 +35,11 @@ class UsersController < ApplicationController
   end
  end
 
+ def destroy
+  User.find_by(id: params[:id]).destroy()
+  render json: {message: 'Goodbye'}
+ end
+
  def set_user
    token = request.headers['authorization']
    decode = JWT.decode(token, 'secret', true, {algorithm: "HS256"}).first
