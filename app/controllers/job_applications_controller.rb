@@ -7,7 +7,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def user_apps
-    apps = User.find_by(id: params[:id]).job_applications
+    apps = User.find_by(id: params[:_json]).job_applications
     render json: apps
   end
 
@@ -16,7 +16,11 @@ class JobApplicationsController < ApplicationController
     render json: @job_app
   end
 
-  def show
+  def update
+
+    @app = find_job_app
+    @app.update(company: params[:company], cover_letter: params[:cover], contact: params[:contact], position: params[:position], source: params[:source], resume: params[:resume])
+    render json: User.find_by(id: @app.user_id).job_applications
   end
 
   private
