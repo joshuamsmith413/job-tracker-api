@@ -8,7 +8,11 @@ class JobApplicationsController < ApplicationController
 
   def user_apps
     apps = User.find_by(id: params[:_json]).job_applications
+    if apps.length == 0
+      render json: { status: true }
+    else
     render json: apps
+  end
   end
 
   def create
