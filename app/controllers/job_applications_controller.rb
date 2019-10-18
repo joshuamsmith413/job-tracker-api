@@ -17,9 +17,32 @@ class JobApplicationsController < ApplicationController
   end
 
   def update
-
     @app = find_job_app
     @app.update(company: params[:company], cover_letter: params[:cover], contact: params[:contact], position: params[:position], source: params[:source], resume: params[:resume])
+    render json: User.find_by(id: @app.user_id).job_applications
+  end
+
+  def update_weekCheckup
+    @app = find_job_app
+    @app.update(one_week_checkup: true)
+    render json: User.find_by(id: @app.user_id).job_applications
+  end
+
+  def update_response
+    @app = find_job_app
+    @app.update(response: true)
+    render json: User.find_by(id: @app.user_id).job_applications
+  end
+
+  def update_interview
+    @app = find_job_app
+    @app.update(interview: true)
+    render json: User.find_by(id: @app.user_id).job_applications
+  end
+
+  def archive_app
+    @app = find_job_app
+    @app.update(current: false)
     render json: User.find_by(id: @app.user_id).job_applications
   end
 
