@@ -11,8 +11,8 @@ class JobApplicationsController < ApplicationController
     if apps.length == 0
       render json: { status: true }
     else
-    render json: apps
-  end
+      render json: apps
+    end
   end
 
   def create
