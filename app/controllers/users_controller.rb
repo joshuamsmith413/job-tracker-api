@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     render json: @user
   end
   else
-    render json: { error: 'Change not Authorized' }, status: :not_acceptable
+    render json: { error: 'Change Not Authorized' }, status: :not_acceptable
   end
  end
 
